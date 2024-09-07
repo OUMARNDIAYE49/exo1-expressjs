@@ -11,16 +11,16 @@ app.get("/", (req, res) => {
 
 app.post("/app", (req, res) => {
   const customer = new Customer();
-  customer.createCustomer({ name: "Fatima", email: "fatima@gmail.com" });
+  customer.createCustomer({ name: "Lalla", email: "la@gmail.com" });
 
   const p1 = new Product();
-  p1.createProduct({ name: "Dress", quantity: 12, price: 200 });
+  p1.createProduct({ name: "Dress", quantity: 2, price: 400 });
 
   const p2 = new Product();
-  p2.createProduct({ name: "Stylo", quantity: 4, price: 5 });
+  p2.createProduct({ name: "phone", quantity: 5, price: 5000 });
 
   const p3 = new Product();
-  p3.createProduct({ name: "Mac", quantity: 5, price: 1000 });
+  p3.createProduct({ name: "book", quantity: 5, price: 10 });
 
   const d1 = new OrderDetail({ quantity: 2, prix: p1.price, product: p1 });
   const d2 = new OrderDetail({ quantity: 1, prix: p2.price, product: p2 });
@@ -32,19 +32,19 @@ app.post("/app", (req, res) => {
   const order = new Order();
   order.createOrder({
     date: new Date(),
-    amount: 2405,
+    amount: 5450,
     customer: customer.getCustomer(),
     details: [d1, d2, d3],
   });
 
   result.push(order.getOrder()); // Adding first order in result array
 
-  customer.editCustomer({ name: "Mohamed", email: "med@gmail.com" }); //Update curstomer data
+  customer.editCustomer({ name: "Habib", email: "hb@gmail.com" }); //Update curstomer data
 
   //Update order data
   order.editOrder({
     date: new Date(),
-    amount: 2405,
+    amount: 4005,
     customer: customer.getCustomer(),
     details: [d1, d2, d3],
   });
@@ -59,13 +59,13 @@ app.post("/app", (req, res) => {
 
   const items = order.details;
   const p4 = new Product();
-  p4.createProduct({ name: "Phone", quantity: 12, price: 200 });
+  p4.createProduct({ name: "pen", quantity: 12, price: 200 });
   items.push(new OrderDetail({ quantity: 1, price: p4.price, product: p4 }));
 
   //Update order data
   order.editOrder({
     date: new Date(),
-    amount: 2405,
+    amount: 2005,
     customer: customer.getCustomer(),
     details: items,
   });
